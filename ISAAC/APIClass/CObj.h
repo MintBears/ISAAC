@@ -47,7 +47,7 @@ public :
 
 public : 
     virtual void tick();
-    virtual void final_tick() final;
+    virtual void final_tick();
     virtual void render(HDC _dc);
 
     virtual CObj* Clone() = 0;

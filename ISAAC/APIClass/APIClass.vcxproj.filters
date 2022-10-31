@@ -271,6 +271,9 @@
     <ClInclude Include="CtraceState.h">
       <Filter>Game\07.MonsterState\TraceState</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer_Body.h">
+      <Filter>Game\04.Object\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="APIClass.rc">
@@ -406,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="CtraceState.cpp">
       <Filter>Game\07.MonsterState\TraceState</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer_Body.cpp">
+      <Filter>Game\04.Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

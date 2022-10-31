@@ -66,6 +66,7 @@ void CStartLevel::tick()
 		ChangeLevel(LEVEL_TYPE::EDITOR);
 	}
 
+	/*
 	if (IsTap(KEY::LBTN))
 	{
 		//중앙기준으로 퍼지는힘 작용
@@ -80,6 +81,7 @@ void CStartLevel::tick()
 		Instantiate(pForce, vMousePos, LAYER::FORCE);
 		
 	}
+
 	if (IsTap(KEY::RBTN))
 	{
 		CPlatform* pPlatform = new CPlatform;
@@ -89,7 +91,7 @@ void CStartLevel::tick()
 
 		Instantiate(pPlatform, vMousePos, LAYER::PLATFORM);
 	}
-
+	*/
 }
 
 void CStartLevel::Enter()

@@ -23,7 +23,7 @@ void CPlatform::BeginOverlap(CCollider* _Other)
 	if (nullptr == pPlayer)
 		return;
 	
-	pPlayer->GetCRigidbody()->SetGround(true);
+	//pPlayer->GetCRigidbody()->IsGround(true);
 }
 
 void CPlatform::OnOverlap(CCollider* _Other)
@@ -37,5 +37,5 @@ void CPlatform::EndOverlap(CCollider* _Other)
 	if (nullptr == pPlayer)
 		return;
 
-	pPlayer->GetCRigidbody()->SetGround(false);
+	//pPlayer->GetCRigidbody()->SetGround(false);
 }

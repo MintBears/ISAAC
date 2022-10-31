@@ -34,6 +34,7 @@ void CAnimation::init(const wstring& _strName, CTexture* _pAtlas, Vec2 _vLeftTop
 		frm.LeftTopPos = Vec2(_vLeftTop.x + (float)i * _vSize.x, _vLeftTop.y);
 		frm.Duration = _fDuration;
 		frm.Size = _vSize;
+		frm.Offset = _vOffset;
 
 		m_vecFrm.push_back(frm);
 	}
@@ -59,15 +60,6 @@ void CAnimation::tick()
 			m_bFinish = true;
 		}
 	}
-
-
-
-	//if (m_vecFrm.size() <= m_iCurFrm)
-	//{
-	//	m_iCurFrm = 0;
-	//}
-
-	m_iCurFrm;
 }
 
 void CAnimation::render(HDC _dc)
@@ -81,7 +73,7 @@ void CAnimation::render(HDC _dc)
 	tAnimFrm frm = m_vecFrm[m_iCurFrm];
 	
 	TransparentBlt(_dc
-		, (int)(Pos.x - frm.Size.x / 2.0f), (int)(Pos.y - frm.Size.y / 2.0f)
+		, (int)(Pos.x - frm.Size.x / 2.0f + frm.Offset.x), (int)(Pos.y - frm.Size.y / 2.0f + frm.Offset.y)
 		, (int)frm.Size.x, (int)frm.Size.y
 		, m_pAtlas->GetDC()
 		, (int)frm.LeftTopPos.x, (int)frm.LeftTopPos.y

@@ -31,6 +31,7 @@ public:
     CAnimation* FindAnimation(const wstring& _strName);
     CAnimation* LoadAnimation(const wstring& _strRelativePath);
     void Play(const wstring& _strName, bool _bRepeat);
+    void SetRepeat(bool _bRepeat) { m_bRepeat = _bRepeat; }
 
 };
 
