@@ -13,6 +13,7 @@ public:
 
 private:
     FLOAT           m_fSpeed;    
+    FLOAT           m_fAttackSpeed;
     CAnimator*      m_SubAnimator;
 public:
 
@@ -29,5 +30,7 @@ public:
 private:
     void Move();
     void Ani();
+    void Attack();
+
 };
 

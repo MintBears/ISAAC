@@ -123,9 +123,4 @@ void CKeyMgr::tick()
 	ScreenToClient(CEngine::GetInst()->GethMainWnd(), &ptMousePos);
 
 	m_vMousePos = ptMousePos;
-
-
-
-
-	
 }

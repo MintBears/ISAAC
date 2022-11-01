@@ -31,6 +31,7 @@ CCamera::~CCamera()
 
 void CCamera::tick()
 {
+	/*
 	if (IsPressed(KEY::W))
 		m_Look.y -= 200.f * DT;
 	if (IsPressed(KEY::S))
@@ -39,7 +40,7 @@ void CCamera::tick()
 		m_Look.x -= 200.f * DT;
 	if (IsPressed(KEY::D))
 		m_Look.x += 200.f * DT;
-	
+	*/
 	Vec2 Resolution = CEngine::GetInst()->GetResolution();
 	Resolution /= 2.0f;
 	m_Diff = m_Look + m_vOffset - Resolution;
