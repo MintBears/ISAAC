@@ -20,6 +20,7 @@ CObj::CObj()
 	, m_pAI(nullptr)
 	, m_Dead(false)
 	, m_eLayer()
+	, m_bIsValid(true)
 {
 }
 
@@ -33,6 +34,7 @@ CObj::CObj(const CObj& _other)
 	, m_pAI(nullptr)
 	, m_Dead(false)	
 	, m_eLayer(_other.m_eLayer)
+	, m_bIsValid(false)
 	//강제 세팅을 해야된다.
 {
 	//깊은 복사

@@ -27,7 +27,7 @@ CMonster::CMonster()
 	//충돌체 체크
 	GetCollider()->SetScale(Vec2(150.f, 150.f));
 	m_pTex = CResMgr::GetInst()->FindTexture(L"Monster");
-	
+
 	m_tInfo.m_fSpeed = 100.f;
 	m_tInfo.m_fDetectRange = 500.f;
 
@@ -65,7 +65,7 @@ void CMonster::render(HDC _dc)
 	if (1.0f < fRatio)
 	{
 		fRatio = 1.0f;
-		Dir = -1.0f;	
+		Dir = -1.0f;
 	}
 	else if (fRatio < 0.f)
 	{
@@ -73,7 +73,7 @@ void CMonster::render(HDC _dc)
 		Dir = 1.0f;
 	}
 
-	 
+
 	BLENDFUNCTION tBlend = {};
 
 	tBlend.AlphaFormat = AC_SRC_ALPHA;
@@ -84,21 +84,20 @@ void CMonster::render(HDC _dc)
 
 
 	AlphaBlend(_dc, (int)(vPos.x - m_pTex->Widht() / 2.0f)
-				  , (int)(vPos.y - m_pTex->Height() / 2.0f)
-				  , m_pTex->Widht()
-				  , m_pTex->Height()
-				  , m_pTex->GetDC()
-				  , 0, 0
-				  , m_pTex->Widht()
-				  , m_pTex->Height()
-				  , tBlend);
+		, (int)(vPos.y - m_pTex->Height() / 2.0f)
+		, m_pTex->Widht()
+		, m_pTex->Height()
+		, m_pTex->GetDC()
+		, 0, 0
+		, m_pTex->Widht()
+		, m_pTex->Height()
+		, tBlend);
 
 	CObj::render(_dc);
 }
 
 void CMonster::BeginOverlap(CCollider* _Other)
 {
-
 	m_bisCollision = true;
 
 	if (_Other->GetOwner()->GetLayerType() == LAYER::PLAYER_PROJECTILE)

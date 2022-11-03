@@ -117,8 +117,10 @@ void CPlayer::tick()
 	//사망
 	if (m_iHp == 0)
 	{
-		//캐릭터가 갑자기 죽으면 애러 뜨니까 잠시 주석
-		SetDead();
+		//게임에서 캐릭터가 죽으면 이상하기에 삭제보다는 조종을 안하는쪽으로 접근을 하자.
+		//SetDead();
+		SetValid(false);
+
 	}
 	
 }

@@ -26,18 +26,18 @@ void CLevel::tick()
 	{
 		if (i == (UINT)LAYER::TILE)
 		{
-			
 			for (size_t j = 0; j < m_vecTile.size(); j++)
 			{
-				m_vecTile[j]->tick();
+				if (m_vecTile[j]->GetValid())
+					m_vecTile[j]->tick();
 			}
-
 		}
 		else
 		{
 			for (size_t j = 0; j < m_arrLayer[i].size(); j++)
 			{
-				m_arrLayer[i][j]->tick();
+				if (m_arrLayer[i][j]->GetValid())
+					m_arrLayer[i][j]->tick();
 			}
 		}
 
@@ -52,14 +52,16 @@ void CLevel::final_tick()
 		{
 			for (size_t j = 0; j < m_vecTile.size(); j++)
 			{
-				m_vecTile[j]->final_tick();
+				if (m_vecTile[j]->GetValid())
+					m_vecTile[j]->final_tick();
 			}
 		}
 		else
 		{
 			for (size_t j = 0; j < m_arrLayer[i].size(); j++)
 			{
-				m_arrLayer[i][j]->final_tick();
+				if (m_arrLayer[i][j]->GetValid())
+					m_arrLayer[i][j]->final_tick();
 			}
 		}
 	}
@@ -75,7 +77,8 @@ void CLevel::render(HDC _dc)
 
 			for (size_t j = 0; j < m_vecTile.size(); j++)
 			{
-				m_vecTile[j]->render(_dc);
+				if (m_vecTile[j]->GetValid())
+					m_vecTile[j]->render(_dc);
 			}
 
 		}
@@ -91,7 +94,8 @@ void CLevel::render(HDC _dc)
 				}
 				else
 				{
-					(*iter)->render(_dc);
+					if ((*iter)->GetValid())
+						(*iter)->render(_dc);
 					++iter;
 				}
 			}

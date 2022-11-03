@@ -23,6 +23,7 @@ CStartLevel::CStartLevel()
 
 CStartLevel::~CStartLevel()
 {
+
 }
 
 void CStartLevel::tick()

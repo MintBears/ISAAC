@@ -28,6 +28,7 @@ private:
     LAYER           m_eLayer;
 
     bool            m_Dead;
+    bool            m_bIsValid;
 
 
 public : 
@@ -47,6 +48,9 @@ public :
 
     bool IsDead() { return m_Dead; }
     void SetDead();
+
+    bool GetValid() { return m_bIsValid; }
+    void SetValid(bool _bIsValid) { m_bIsValid = _bIsValid; }
 
 
 public : 

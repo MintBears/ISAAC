@@ -23,13 +23,10 @@ void CtraceState::finaltick()
 
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(pCurLevel->GetLayer(LAYER::PLAYER)[0]);
-	if (nullptr == pPlayer)
-	{
-		ChangeState(L"Idle");
-	}
 	assert(pPlayer);
-
-
+	
+	if (!(pPlayer->GetValid()))
+		return;
 	Vec2 vMonPos = pMon->GetPos();
 	Vec2 vPlayerPos = pPlayer->GetPos();
 
@@ -40,6 +37,7 @@ void CtraceState::finaltick()
 
 	vMonPos += vMonToPlayer * DT * fSpeed;
 	pMon->SetPos(vMonPos);
+	
 }
 
 void CtraceState::Enter()

@@ -93,8 +93,8 @@ void CCollisionMgr::CollisionBtwLayer(LAYER _left, LAYER _right)
 			bool Dead = vecLeft[i]->IsDead() || vecRight[j]->IsDead();
 
 
-
-			if (CollisionBtwCollider(vecLeft[i]->GetCollider(), vecRight[j]->GetCollider()))
+			//																							+  해당 오브젝트가 유효한가
+			if (CollisionBtwCollider(vecLeft[i]->GetCollider(), vecRight[j]->GetCollider()) && vecLeft[i]->GetValid())
 			{
 				//오버랩 중이다. 겹친 상태이다.
 
