@@ -61,13 +61,14 @@ struct tKeyInfo
 
 class CKeyMgr
 {
-	SINGLE(CKeyMgr);
+	SINGLE(CKeyMgr)
 
 private:
 
 	vector<tKeyInfo>	m_vecKey;
 	Vec2				m_vMousePos;
 
+	KEY					m_eKey;
 
 public:
 	void init();
@@ -75,6 +76,7 @@ public:
 
 public:
 	KEY_STATE GetKeyState(KEY _key) { return m_vecKey[(UINT)_key].state; }
+	KEY GetKey() { return m_eKey; }
 	Vec2 GetMousePos() { return m_vMousePos; }
 };
 

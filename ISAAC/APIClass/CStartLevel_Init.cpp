@@ -8,6 +8,7 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CMap.h"
+#include "CCamera.h"
 
 #include "CCollisionMgr.h"
 #include "CPanelUI.h"
@@ -22,19 +23,19 @@ void CStartLevel::init()
 	//택스트 로딩
 	CResMgr::GetInst()->LoadTexture(L"Monster", L"texture\\magicmushroom.bmp");
 
+	//맵 꾸미지
 	CMap* Map = new CMap;
 	AddObject(Map, LAYER::BACKGROUND);
-
+	//캐릭터 로드
 	Player = new CPlayer;
 	Player->SetPos(Vec2((FLOAT)(CEngine::GetInst()->GetResolution().x / 2), (FLOAT)(CEngine::GetInst()->GetResolution().y / 2)));
 	Player->SetScale(Vec2(100.f, 100.f));
 	AddObject(Player, LAYER::PLAYER);
-
+	//몬스터 로드
 	CMonster* Monster = new CMonster;
 	Monster->SetPos(Vec2(50.f, 50.f));
 	Monster->SetScale(Vec2(100.f, 100.f));
 	AddObject(Monster, LAYER::MONSTER);
-
 	//level의 충돌 체크
 	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::MONSTER);
 	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::MONSTER_PROJECTILE);

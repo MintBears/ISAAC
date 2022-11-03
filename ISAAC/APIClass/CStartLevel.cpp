@@ -27,6 +27,9 @@ CStartLevel::~CStartLevel()
 
 void CStartLevel::tick()
 {
+	//카메라 세팅
+	CCamera::GetInst()->SetLook(Player->GetPos());
+
 	CLevel::tick();
 
 	if (IsTap(KEY::ENTER))

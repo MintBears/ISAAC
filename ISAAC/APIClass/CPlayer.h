@@ -13,8 +13,14 @@ public:
 
 private:
     FLOAT           m_fSpeed;    
-    FLOAT           m_fAttackSpeed;
     CAnimator*      m_SubAnimator;
+
+    //사격 관련
+    FLOAT           m_fAttackSpeed;
+    FLOAT           m_CurAttackTime;
+    bool            m_bIsAttack;
+
+
 public:
 
     virtual void tick() override;

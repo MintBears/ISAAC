@@ -20,13 +20,11 @@
 
 
 
-#include "CPlayer_Body.h"
-
-
-
 CPlayer::CPlayer()
 	: m_fSpeed(200.f)
 	, m_fAttackSpeed(1.f)
+	, m_CurAttackTime(0.f)
+	, m_bIsAttack(false)
 
 {
 	CreateCollider();
@@ -186,18 +184,46 @@ void CPlayer::Ani()
 
 void CPlayer::Attack()
 {
-	if (IsTap(KEY::LSHIFT))
+	//사격탄환 생성
+	if (IsPressed(KEY::W) || IsPressed(KEY::A) || IsPressed(KEY::S) || IsPressed(KEY::D))
 	{
-		//CLevel* CurLevel = CLevelMgr::GetInst()->GetCurLevel();
-
-		for (int i = 0; i < 3; i++)
+		if (m_CurAttackTime == 0.f)
 		{
+			//CLevel* CurLevel = CLevelMgr::GetInst()->GetCurLevel();
 			CMissile* Missile = new CMissile;
 			//Missile->SetPos(GetPos());
 			Missile->SetScale(Vec2(20.F, 20.f));
-			Missile->SetSpeed(400.f);
-			Missile->SetDir(45.f + (45.f * (float)i));
+			Missile->SetSpeed(400.f * m_fAttackSpeed);
+			switch (CKeyMgr::GetInst()->GetKey())
+			{
+			case KEY::W:
+				Missile->SetDir(90.f);
+				break;
+			case KEY::A:
+				Missile->SetDir(180.f);
+				break;
+			case KEY::S:
+				Missile->SetDir(270.f);
+				break;
+			case KEY::D:
+				Missile->SetDir(0.f);
+				break;
+			default:
+				break;
+			}
+
 			Instantiate(Missile, GetPos(), LAYER::PLAYER_PROJECTILE);
+		}
+		m_bIsAttack = true;
+	}
+	//사격 속도
+	if (m_bIsAttack)
+	{
+		m_CurAttackTime += DT * m_fAttackSpeed;
+		if (m_CurAttackTime >= m_fAttackSpeed)
+		{
+			m_CurAttackTime = 0.f;
+			m_bIsAttack = false;
 		}
 	}
 }

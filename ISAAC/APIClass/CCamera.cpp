@@ -48,9 +48,11 @@ void CCamera::tick()
 		m_Look.x += 200.f * DT;
 	*/
 
+	//이걸 구지 여기다가 해야되나 의문
+	/*
 	Vec2 PlayerPos = ((CStartLevel*)CLevelMgr::GetInst()->GetCurLevel())->GetPlayer()->GetPos();
 	m_Look = PlayerPos;
-
+	*/
 	Vec2 Resolution = CEngine::GetInst()->GetResolution();
 	Resolution /= 2.0f;
 	m_Diff = m_Look + m_vOffset - Resolution;

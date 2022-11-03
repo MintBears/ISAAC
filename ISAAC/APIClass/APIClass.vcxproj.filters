@@ -274,9 +274,6 @@
     <ClInclude Include="CtraceState.h">
       <Filter>Game\07.MonsterState\TraceState</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayer_Body.h">
-      <Filter>Game\04.Object\Player</Filter>
-    </ClInclude>
     <ClInclude Include="CMap.h">
       <Filter>Game\04.Object\Map</Filter>
     </ClInclude>
@@ -415,9 +412,6 @@
     </ClCompile>
     <ClCompile Include="CtraceState.cpp">
       <Filter>Game\07.MonsterState\TraceState</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer_Body.cpp">
-      <Filter>Game\04.Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CStartLevel_Init.cpp">
       <Filter>Game\03.Level\01.Start</Filter>
