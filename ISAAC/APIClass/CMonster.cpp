@@ -16,6 +16,10 @@ CMonster::CMonster()
 	, m_Speed(100.f)
 	, m_pTex(nullptr)
 	, m_tInfo{}
+	, m_iHp(3)
+	, m_fCollisionTime(0.f)
+	, m_fInvincibleTime(1.f)
+	, m_bisCollision(false)
 {
 	CreateCollider();
 	CreatAI();
@@ -41,6 +45,13 @@ CMonster::~CMonster()
 void CMonster::tick()
 {
 	CObj::tick();
+
+	//사망
+	if (m_iHp == 0)
+	{
+		//캐릭터가 갑자기 죽으면 애러 뜨니까 잠시 주석
+		SetDead();
+	}
 }
 
 void CMonster::render(HDC _dc)
@@ -87,6 +98,26 @@ void CMonster::render(HDC _dc)
 
 void CMonster::BeginOverlap(CCollider* _Other)
 {
-	SetDead();
-	_Other;
+
+	m_bisCollision = true;
+
+	if (_Other->GetOwner()->GetLayerType() == LAYER::PLAYER_PROJECTILE)
+	{
+		if (m_fCollisionTime == 0.f)
+		{
+			//충돌처리
+			m_iHp--;
+		}
+	}
+
+}
+
+void CMonster::OnOverlap(CCollider* _Other)
+{
+
+}
+
+void CMonster::EndOverlap(CCollider* _Other)
+{
+	m_bisCollision = false;
 }

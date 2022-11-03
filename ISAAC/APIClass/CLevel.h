@@ -12,6 +12,8 @@ public:
 private:
     vector<CObj*>   m_arrLayer[(UINT)LAYER::END];
 
+
+
     vector<CObj*>   m_vecTile;                      //화면안에 들어오는 타일
 
     UINT            m_iTileXCount;
@@ -26,6 +28,7 @@ public:
     const vector<CObj*>& GetLayer(LAYER _layer) { return m_arrLayer[(UINT)_layer]; }
 
     void SetFocusedUI(CObj* _pUI);
+
 
 public:
     virtual void init() = 0;

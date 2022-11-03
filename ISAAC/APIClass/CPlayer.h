@@ -12,13 +12,25 @@ public:
     virtual ~CPlayer();
 
 private:
-    FLOAT           m_fSpeed;    
+    //캐릭터 추가 이미지
     CAnimator*      m_SubAnimator;
+    
+    //이동속도
+    FLOAT           m_fSpeed;    
+
+    //채력
+    UINT            m_iHp;
 
     //사격 관련
     FLOAT           m_fAttackSpeed;
     FLOAT           m_CurAttackTime;
     bool            m_bIsAttack;
+
+    //충돌 관련
+    FLOAT           m_fCollisionTime;
+    FLOAT           m_fInvincibleTime;
+    bool            m_bisCollision;
+
 
 
 public:

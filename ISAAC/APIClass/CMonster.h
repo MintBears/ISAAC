@@ -19,6 +19,14 @@ private:
 
     tMonsterInfo    m_tInfo;
 
+    //채력
+    UINT            m_iHp;
+
+    //충돌 관련
+    FLOAT           m_fCollisionTime;
+    FLOAT           m_fInvincibleTime;
+    bool            m_bisCollision;
+
 public:
 
     tMonsterInfo& GetMonsterInfo() { return m_tInfo; }
@@ -30,6 +38,8 @@ public:
     CLONE(CMonster)
 
     virtual void BeginOverlap(CCollider* _Other) override;
+    virtual void OnOverlap(CCollider* _Other) override;
+    virtual void EndOverlap(CCollider* _Other) override;
 
 public:
      

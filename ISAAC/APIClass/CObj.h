@@ -25,6 +25,8 @@ private:
     CRigidbody*     m_Rigidbody;
     CAI*            m_pAI;
 
+    LAYER           m_eLayer;
+
     bool            m_Dead;
 
 
@@ -35,6 +37,8 @@ public :
     void SetScale(Vec2 _v) { m_vScale = _v; }
     Vec2 GetScale() { return m_vScale; }
 
+    void SetLayerType(LAYER _elayer) { m_eLayer = _elayer; }
+    LAYER GetLayerType() { return m_eLayer; }
 
     CCollider* GetCollider() { return m_Collider; }
     CAnimator* GetCAnimator() { return m_Animator; }

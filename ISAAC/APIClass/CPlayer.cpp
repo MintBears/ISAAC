@@ -25,6 +25,10 @@ CPlayer::CPlayer()
 	, m_fAttackSpeed(1.f)
 	, m_CurAttackTime(0.f)
 	, m_bIsAttack(false)
+	, m_iHp(2)
+	, m_fCollisionTime(0.f)
+	, m_fInvincibleTime(1.f)
+	, m_bisCollision(false)
 
 {
 	CreateCollider();
@@ -100,6 +104,23 @@ void CPlayer::tick()
 	Ani();
 
 	CObj::tick();
+
+	//무적 처리
+	if (m_bisCollision)
+	{
+		m_fCollisionTime += DT;
+		if (m_fCollisionTime >= m_fInvincibleTime)
+		{
+			m_fCollisionTime = 0.f;
+		}
+	}
+	//사망
+	if (m_iHp == 0)
+	{
+		//캐릭터가 갑자기 죽으면 애러 뜨니까 잠시 주석
+		SetDead();
+	}
+	
 }
 
 void CPlayer::final_tick()
@@ -123,14 +144,25 @@ void CPlayer::render(HDC _dc)
 void CPlayer::BeginOverlap(CCollider* _Other)
 {
 
+	m_bisCollision = true;
+
 }
 
 void CPlayer::OnOverlap(CCollider* _Other)
 {
+	if (_Other->GetOwner()->GetLayerType() == LAYER::MONSTER)
+	{
+		if (m_fCollisionTime == 0.f)
+		{
+			//충돌처리
+			m_iHp--;
+		}
+	}
 }
 
 void CPlayer::EndOverlap(CCollider* _Other)
 {
+	m_bisCollision = false;
 }
 
 void CPlayer::Move()
@@ -194,6 +226,7 @@ void CPlayer::Attack()
 			//Missile->SetPos(GetPos());
 			Missile->SetScale(Vec2(20.F, 20.f));
 			Missile->SetSpeed(400.f * m_fAttackSpeed);
+			Missile->SetLayerType(LAYER::PLAYER_PROJECTILE);
 			switch (CKeyMgr::GetInst()->GetKey())
 			{
 			case KEY::W:
@@ -216,6 +249,7 @@ void CPlayer::Attack()
 		}
 		m_bIsAttack = true;
 	}
+
 	//사격 속도
 	if (m_bIsAttack)
 	{

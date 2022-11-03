@@ -66,14 +66,6 @@ void CKeyMgr::tick()
 	{
 		for (size_t i = 0; i < m_vecKey.size(); i++)
 		{
-			//m_vecKey[i].key = KEY::UP;
-			//GetAsyncKeyState(VK_UP);
-			//GetAsyncKeyState(VK_DOWN);
-			//GetAsyncKeyState(VK_LEFT);
-			//GetAsyncKeyState(VK_RIGHT);
-			// => KRY	정보를 일일이 추가하게되면 이러한 조건문을 계속 추가해야된다.
-			// 그러므로 아래와 같이 이러한 값을 한곳에 담아 1대1로 매칭시켜주는 글로벌 vector를 만들어 키가 그때 만들어진 모양으로 vector를 변화시켜준다.
-			// =>		GetAsyncKeyState(g_arrVK[(UINT)m_vecKey[i].key])
 			if (GetAsyncKeyState(g_arrVK[(UINT)m_vecKey[i].key]) & 0x8000)
 			{
 				//키를 눌렀는데 전에 안눌렀다(처음눌렀을때)

@@ -30,13 +30,15 @@ void CStartLevel::init()
 	Player = new CPlayer;
 	Player->SetPos(Vec2((FLOAT)(CEngine::GetInst()->GetResolution().x / 2), (FLOAT)(CEngine::GetInst()->GetResolution().y / 2)));
 	Player->SetScale(Vec2(100.f, 100.f));
-	AddObject(Player, LAYER::PLAYER);
+	Player->SetLayerType(LAYER::PLAYER);
+	AddObject(Player, Player->GetLayerType());
 	//몬스터 로드
 	CMonster* Monster = new CMonster;
 	Monster->SetPos(Vec2(50.f, 50.f));
 	Monster->SetScale(Vec2(100.f, 100.f));
-	AddObject(Monster, LAYER::MONSTER);
-	//level의 충돌 체크
+	Monster->SetLayerType(LAYER::MONSTER);
+	AddObject(Monster, Monster->GetLayerType());
+	//level의 충돌 체크(여기에 적힌 충돌들만 충돌 체크 하기로했다.)
 	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::MONSTER);
 	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::MONSTER_PROJECTILE);
 	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::PLATFORM);

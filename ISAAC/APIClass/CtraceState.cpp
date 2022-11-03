@@ -23,6 +23,10 @@ void CtraceState::finaltick()
 
 	CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(pCurLevel->GetLayer(LAYER::PLAYER)[0]);
+	if (nullptr == pPlayer)
+	{
+		ChangeState(L"Idle");
+	}
 	assert(pPlayer);
 
 
