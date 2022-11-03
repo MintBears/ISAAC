@@ -55,6 +55,7 @@ void CEditorLevel::CreateUI()
 	// Panel UI
 	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetIdleTex(pPanelTex);
+	pPanelUI->SetIsMove(true);
 	pPanelUI->SetPos(Vec2(vResolution.x - (pPanelTex->Widht() + 20.f), 10.f));
 
 

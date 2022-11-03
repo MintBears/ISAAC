@@ -5,6 +5,7 @@
 #include "CTexture.h"
 
 CPanelUI::CPanelUI()
+	: m_bIsMove(false)
 {
 }
 
@@ -14,7 +15,7 @@ CPanelUI::~CPanelUI()
 
 void CPanelUI::tick()
 {
-	if (IsLbtnDown())
+	if (IsLbtnDown() && m_bIsMove)
 	{
 		Vec2 vMove = MOUSE_POS - m_vPressPos;
 
@@ -24,7 +25,7 @@ void CPanelUI::tick()
 
 		m_vPressPos = MOUSE_POS;
 	}
-
+	
 	CUI::tick();
 }
 

@@ -159,6 +159,7 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLevel.h" />
     <ClInclude Include="CLevelMgr.h" />
+    <ClInclude Include="CMap.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObj.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
+    <ClCompile Include="CMap.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObj.cpp" />
@@ -222,6 +224,7 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CStage01Level.cpp" />
     <ClCompile Include="CStartLevel.cpp" />
+    <ClCompile Include="CStartLevel_Init.cpp" />
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTile.cpp" />

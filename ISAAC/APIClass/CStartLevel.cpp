@@ -24,36 +24,6 @@ CStartLevel::~CStartLevel()
 {
 }
 
-void CStartLevel::init()
-{
-	//택스트 로딩
-	CResMgr::GetInst()->LoadTexture(L"Monster", L"texture\\magicmushroom.bmp");
-
-	CPlayer* Player = new CPlayer;
-	Player->SetPos(Vec2((FLOAT)(CEngine::GetInst()->GetResolution().x / 2), (FLOAT)(CEngine::GetInst()->GetResolution().y / 2)));
-	Player->SetScale(Vec2(100.f, 100.f));
-	AddObject(Player, LAYER::PLAYER);
-
-	CMonster* Monster = new CMonster;
-	Monster->SetPos(Vec2(50.f, 50.f));
-	Monster->SetScale(Vec2(100.f, 100.f));
-	Monster->SetTarget(Player);
-	AddObject(Monster, LAYER::MONSTER);
-
-	//level의 충돌 체크
-	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::MONSTER);
-	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::MONSTER_PROJECTILE);
-	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER, LAYER::PLATFORM);
-
-	CCollisionMgr::GetInst()->LayerCheck(LAYER::PLAYER_PROJECTILE, LAYER::MONSTER);
-
-	CCollisionMgr::GetInst()->LayerCheck(LAYER::MONSTER, LAYER::MONSTER);
-
-
-	Vec2 Resolution = CEngine::GetInst()->GetResolution();
-	CCamera::GetInst()->SetLook(Resolution/2.f);
-}
-
 void CStartLevel::tick()
 {
 	CLevel::tick();

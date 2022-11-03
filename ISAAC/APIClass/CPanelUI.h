@@ -11,6 +11,11 @@ private:
 
     Vec2    m_vPressPos;
 
+    bool    m_bIsMove;
+
+public:
+    void SetIsMove(bool _bIsMove) { m_bIsMove = _bIsMove; }
+
 public:
     virtual void tick() override;
     virtual void render(HDC _dc) override;
