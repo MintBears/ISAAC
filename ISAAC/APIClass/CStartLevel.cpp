@@ -17,6 +17,7 @@
 
 
 CStartLevel::CStartLevel()
+	: Player(nullptr)
 {
 }
 

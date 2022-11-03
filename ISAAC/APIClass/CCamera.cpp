@@ -6,6 +6,12 @@
 #include "CResMgr.h"
 #include "CKeyMgr.h"
 
+
+#include "CLevelMgr.h"
+#include "CLevel.h"
+#include "CStartLevel.h"
+#include "CPlayer.h"
+
 #include "CTexture.h"
 
 CCamera::CCamera()
@@ -41,6 +47,10 @@ void CCamera::tick()
 	if (IsPressed(KEY::D))
 		m_Look.x += 200.f * DT;
 	*/
+
+	Vec2 PlayerPos = ((CStartLevel*)CLevelMgr::GetInst()->GetCurLevel())->GetPlayer()->GetPos();
+	m_Look = PlayerPos;
+
 	Vec2 Resolution = CEngine::GetInst()->GetResolution();
 	Resolution /= 2.0f;
 	m_Diff = m_Look + m_vOffset - Resolution;

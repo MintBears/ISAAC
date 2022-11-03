@@ -25,7 +25,7 @@ void CStartLevel::init()
 	CMap* Map = new CMap;
 	AddObject(Map, LAYER::BACKGROUND);
 
-	CPlayer* Player = new CPlayer;
+	Player = new CPlayer;
 	Player->SetPos(Vec2((FLOAT)(CEngine::GetInst()->GetResolution().x / 2), (FLOAT)(CEngine::GetInst()->GetResolution().y / 2)));
 	Player->SetScale(Vec2(100.f, 100.f));
 	AddObject(Player, LAYER::PLAYER);
@@ -33,7 +33,6 @@ void CStartLevel::init()
 	CMonster* Monster = new CMonster;
 	Monster->SetPos(Vec2(50.f, 50.f));
 	Monster->SetScale(Vec2(100.f, 100.f));
-	Monster->SetTarget(Player);
 	AddObject(Monster, LAYER::MONSTER);
 
 	//level의 충돌 체크

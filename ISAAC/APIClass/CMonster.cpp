@@ -14,7 +14,6 @@
 CMonster::CMonster()
 	: m_HP(3)
 	, m_Speed(100.f)
-	, m_Target(nullptr)
 	, m_pTex(nullptr)
 	, m_tInfo{}
 {
@@ -41,21 +40,6 @@ CMonster::~CMonster()
 
 void CMonster::tick()
 {
-	/*
-	if (IsValid(m_Target))
-	{
-		Vec2 TargetPos = m_Target->GetPos();
-		m_Target->SetName(L"Player");
-		Vec2 ThisPos = GetPos();
-
-		Vec2 Dir = 	TargetPos - ThisPos;
-		Dir.Normalize();
-
-		ThisPos.x += Dir.x * m_Speed * DT;
-		ThisPos.y += Dir.y * m_Speed * DT;
-
-		SetPos(ThisPos);
-	}*/
 	CObj::tick();
 }
 

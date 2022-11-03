@@ -13,7 +13,6 @@ public:
 private:
 
     UINT            m_HP;
-    CObj*           m_Target;
 
     FLOAT           m_Speed;
     CTexture*       m_pTex;
@@ -22,7 +21,6 @@ private:
 
 public:
 
-    void SetTarget(CObj* _Target) { m_Target = _Target; }
     tMonsterInfo& GetMonsterInfo() { return m_tInfo; }
 
 public:

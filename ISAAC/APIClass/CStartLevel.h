@@ -1,11 +1,19 @@
 #pragma once
 #include "CLevel.h"
+class CPlayer;
+
 class CStartLevel :
     public CLevel
 {
 public:
     CStartLevel();
     ~CStartLevel();
+
+private:
+    CPlayer* Player;
+
+public: 
+    CPlayer* GetPlayer() { return Player; }
 
 public:
     virtual void init() override;
