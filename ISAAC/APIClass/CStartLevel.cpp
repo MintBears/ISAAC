@@ -17,7 +17,8 @@
 
 
 CStartLevel::CStartLevel()
-	: Player(nullptr)
+	: m_Player(nullptr)
+	, m_pPanelUI(nullptr)
 {
 }
 
@@ -29,8 +30,9 @@ CStartLevel::~CStartLevel()
 void CStartLevel::tick()
 {
 	//카메라 세팅
-	CCamera::GetInst()->SetLook(Player->GetPos());
-
+	//CCamera::GetInst()->SetLook(m_Player->GetPos());
+	//Vec2 vResolution = CEngine::GetInst()->GetResolution();
+	//CCamera::GetInst()->SetLook(vResolution / 2.f);
 	CLevel::tick();
 
 	if (IsTap(KEY::ENTER))

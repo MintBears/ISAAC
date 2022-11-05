@@ -1,6 +1,7 @@
 #pragma once
 #include "CLevel.h"
 class CPlayer;
+class CPanelUI;
 
 class CStartLevel :
     public CLevel
@@ -10,10 +11,13 @@ public:
     ~CStartLevel();
 
 private:
-    CPlayer* Player;
+    CPlayer* m_Player;
+
+    CPanelUI* m_pPanelUI;
 
 public: 
-    CPlayer* GetPlayer() { return Player; }
+    CPlayer* GetPlayer() { return m_Player; }
+    CPanelUI* GetPanelUI() { return m_pPanelUI; }
 
 public:
     virtual void init() override;
