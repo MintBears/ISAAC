@@ -147,6 +147,7 @@
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CButton.h" />
     <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CCameraObj.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CComponent.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CButton.cpp" />
     <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CCameraObj.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CComponent.cpp" />

@@ -137,6 +137,9 @@
     <Filter Include="Game\04.Object\Map">
       <UniqueIdentifier>{59b54c5d-aab7-4f85-bfa1-5a49f22f42b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\CameraObj">
+      <UniqueIdentifier>{4fa8c8f6-215f-4193-a661-89057a114acc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -276,6 +279,9 @@
     </ClInclude>
     <ClInclude Include="CMap.h">
       <Filter>Game\04.Object\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraObj.h">
+      <Filter>Game\04.Object\CameraObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="CMap.cpp">
       <Filter>Game\04.Object\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraObj.cpp">
+      <Filter>Game\04.Object\CameraObj</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

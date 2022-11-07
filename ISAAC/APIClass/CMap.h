@@ -2,6 +2,7 @@
 #include "CObj.h"
 
 class CTexture;
+class CCollider;
 
 class CMap :
 	public CObj
@@ -12,6 +13,11 @@ public:
 
 private:
 	CTexture*	m_pTex;
+
+	Vec2		m_vOffset;
+
+	UINT		m_fWallScale;
+	CCollider*	m_CameraCollider;
 
 public:
 

@@ -36,10 +36,11 @@ CPlayer::CPlayer()
 	m_SubAnimator = new CAnimator(this);
 	CreatRigidbody();
 
+	//Collider
 	GetCollider()->SetOffsetPos(Vec2(0.f, 5.f));
 	GetCollider()->SetScale(Vec2(30.f, 33.f));
 
-
+	//Animator
 	CTexture* Head = CResMgr::GetInst()->LoadTexture(L"Head", L"texture\\Head.bmp");
 	CTexture* Body = CResMgr::GetInst()->LoadTexture(L"Body", L"texture\\Body.bmp");
 
@@ -75,12 +76,10 @@ CPlayer::CPlayer()
 	m_SubAnimator->CreateAnimation(L"BodyIdle", Body, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vBodyOffset, 1, 0.1f);
 	m_SubAnimator->FindAnimation(L"BodyIdle")->Save(L"animation\\BodyIdle.anim");
 
-
-
-
-
 	//GetCAnimator()->LoadAnimation(L"animation\\HeadMove.anim");
 
+
+	//Rigidbody
 	GetCRigidbody()->SetFriction(100.f);
 	GetCRigidbody()->IsGround(true);
 	GetCRigidbody()->SetVelocityLimit(200.0f);
