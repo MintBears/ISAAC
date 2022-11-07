@@ -79,7 +79,7 @@ CPlayer::CPlayer()
 
 
 
-	GetCAnimator()->LoadAnimation(L"animation\\HeadMove.anim");
+	//GetCAnimator()->LoadAnimation(L"animation\\HeadMove.anim");
 
 	GetCRigidbody()->SetFriction(100.f);
 	GetCRigidbody()->IsGround(true);

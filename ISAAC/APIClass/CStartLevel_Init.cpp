@@ -23,14 +23,14 @@ void CStartLevel::init()
 	// UI 배치
 	// Button 이 사용할 텍스쳐
 	CTexture* pPanelTex = CResMgr::GetInst()->LoadTexture(L"PlayUIBackGround", L"Map\\PlayUIBackGround.bmp");
-
+	
 	// Panel UI
 	m_pPanelUI = new CPanelUI;
 	m_pPanelUI->SetIdleTex(pPanelTex);
 	m_pPanelUI->SetIsMove(false);
 	m_pPanelUI->SetPos(Vec2(0.f, 0.f));
 	m_pPanelUI->SetLayerType(LAYER::UI);
-
+	
 	AddObject(m_pPanelUI, m_pPanelUI->GetLayerType());
 
 	//map 배치
@@ -41,11 +41,6 @@ void CStartLevel::init()
 	//맵 꾸미지
 	CMap* pMap = new CMap;
 	pMap->SetPos(Vec2(0.f, (FLOAT)(m_pPanelUI->GetIdleTex()->Height())));
-
-	wchar_t szBuff[256] = {};
-	swprintf_s(szBuff, L"FPS : %f %f", pMap->GetPos().x, pMap->GetPos().y);
-	SetWindowText(CEngine::GetInst()->GethMainWnd(), szBuff);
-
 	pMap->SetLayerType(LAYER::BACKGROUND);
 	AddObject(pMap, pMap->GetLayerType());
 	//캐릭터 로드
