@@ -58,6 +58,8 @@ enum class LAYER
 
 	FORCE,
 
+	CAMERA,
+
 	UI = 15,
 	END = 16,
 };

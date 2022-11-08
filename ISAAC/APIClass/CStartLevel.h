@@ -2,6 +2,7 @@
 #include "CLevel.h"
 class CPlayer;
 class CPanelUI;
+class CCameraObj;
 
 class CStartLevel :
     public CLevel
@@ -12,12 +13,10 @@ public:
 
 private:
     CPlayer* m_Player;
-
-    CPanelUI* m_pPanelUI;
+    CCameraObj* m_pCameraRoom;
 
 public: 
     CPlayer* GetPlayer() { return m_Player; }
-    CPanelUI* GetPanelUI() { return m_pPanelUI; }
 
 public:
     virtual void init() override;

@@ -4,17 +4,19 @@
 
 class CTexture;
 class CAnimator;
+class CMap;
 
 class CPlayer :
     public CObj
 {
 public:
-    CPlayer();
+    CPlayer(Vec2 _vPos, Vec2 _vScale);
     virtual ~CPlayer();
 
 private:
     //캐릭터 추가 이미지
     CAnimator*      m_SubAnimator;
+    CMap*           m_pMap;
     
     //이동속도
     FLOAT           m_fSpeed;    
@@ -32,7 +34,10 @@ private:
     FLOAT           m_fInvincibleTime;
     bool            m_bisCollision;
 
+public:
 
+    void SetSpeed(FLOAT _fSpeed) { m_fSpeed = _fSpeed; }
+    FLOAT GetSpeed() { return m_fSpeed; }
 
 public:
 

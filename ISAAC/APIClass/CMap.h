@@ -4,11 +4,12 @@
 class CTexture;
 class CCollider;
 
+
 class CMap :
 	public CObj
 {
 public:
-	CMap();
+	CMap(Vec2 _vPos, Vec2 _vScale);
 	virtual ~CMap();
 
 private:
@@ -17,7 +18,12 @@ private:
 	Vec2		m_vOffset;
 
 	UINT		m_fWallScale;
-	CCollider*	m_CameraCollider;
+
+
+public : 
+
+	UINT GetWallScale() { return m_fWallScale; }
+	Vec2 GetOffset() { return m_vOffset; }
 
 public:
 
@@ -29,4 +35,9 @@ private:
 	void ImageRender(HDC _dc, CTexture* m_pTex);
 
 	CLONE(CMap)
+
+public:
+	virtual void BeginOverlap(CCollider* _Other) {};
+	virtual void OnOverlap(CCollider* _Other) {};
+	virtual void EndOverlap(CCollider* _Other) {};
 };

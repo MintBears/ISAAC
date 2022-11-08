@@ -5,25 +5,54 @@
 #include "CCollider.h"
 #include "CRigidbody.h"
 
-CPlatform::CPlatform()
+CPlatform::CPlatform(Vec2 _vPos, Vec2 _vScale)
 {
-	CreateCollider();
+	SetPos(_vPos);
+	SetScale(_vScale);
 
-	GetCollider()->SetScale(Vec2(400.f, 50.f));
+	CreateCollider();
+	GetCollider()->SetScale(GetScale());
 }
 
 CPlatform::~CPlatform()
 {
 }
 
+void CPlatform::tick()
+{
+
+	CObj::tick();
+}
+
+void CPlatform::final_tick()
+{
+	CObj::final_tick();
+}
+
+void CPlatform::render(HDC _dc)
+{
+	
+	//Vec2 Pos = CCamera::GetInst()->GetRenderPos(GetPos());
+	//Vec2 Size = GetScale();
+	//Rectangle(_dc
+	//	, Pos.x
+	//	, Pos.y
+	//	, (int)GetScale().x
+	//	, (int)GetScale().y);
+	//int a = GetScale().x;
+	
+	CObj::render(_dc);
+	
+}
+
 void CPlatform::BeginOverlap(CCollider* _Other)
 {
-	//dynamic_cast : 부모 클래스의 포인터에서 자식 클래스의 포인터로 안전하게 다운 캐스팅 해주는 연산자 입니다.
+	
 	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_Other->GetOwner());
 	if (nullptr == pPlayer)
 		return;
 	
-	//pPlayer->GetCRigidbody()->IsGround(true);
+	
 }
 
 void CPlatform::OnOverlap(CCollider* _Other)
@@ -33,9 +62,8 @@ void CPlatform::OnOverlap(CCollider* _Other)
 
 void CPlatform::EndOverlap(CCollider* _Other)
 {
-	CPlayer* pPlayer = dynamic_cast<CPlayer*>(_Other->GetOwner());
-	if (nullptr == pPlayer)
-		return;
-
-	//pPlayer->GetCRigidbody()->SetGround(false);
+	if (_Other->GetOwner()->GetLayerType() == LAYER::PLAYER)
+	{
+		m_pPlayer = dynamic_cast<CPlayer*>(_Other->GetOwner());
+	}
 }

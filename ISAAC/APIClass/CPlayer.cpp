@@ -17,11 +17,12 @@
 #include "CRigidbody.h"
 
 #include "CMissile.h"
+#include "CMap.h"
 
 
 
-CPlayer::CPlayer()
-	: m_fSpeed(200.f)
+CPlayer::CPlayer(Vec2 _vPos, Vec2 _vScale)
+	: m_fSpeed(600.f)
 	, m_fAttackSpeed(1.f)
 	, m_CurAttackTime(0.f)
 	, m_bIsAttack(false)
@@ -29,32 +30,47 @@ CPlayer::CPlayer()
 	, m_fCollisionTime(0.f)
 	, m_fInvincibleTime(1.f)
 	, m_bisCollision(false)
+	, m_pMap(nullptr)
 
 {
+	SetPos(_vPos);
+	SetScale(_vScale);
+
+
 	CreateCollider();
 	CreateAnimator();
 	m_SubAnimator = new CAnimator(this);
 	CreatRigidbody();
 
 	//Collider
-	GetCollider()->SetOffsetPos(Vec2(0.f, 5.f));
-	GetCollider()->SetScale(Vec2(30.f, 33.f));
+	//GetCollider()->SetOffsetPos();
+	GetCollider()->SetScale(GetScale());
 
 	//Animator
 	CTexture* Head = CResMgr::GetInst()->LoadTexture(L"Head", L"texture\\Head.bmp");
 	CTexture* Body = CResMgr::GetInst()->LoadTexture(L"Body", L"texture\\Body.bmp");
 
 	//MoveLook
-	GetCAnimator()->CreateAnimation(L"Down", Head, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 1, 0.5f);
+	Vec2 vHeadOffset = Vec2(0.f, -5.f);
+	GetCAnimator()->CreateAnimation(L"Down", Head, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 1, 0.5f);
 	GetCAnimator()->FindAnimation(L"Down")->Save(L"animation\\Down.anim");
-	GetCAnimator()->CreateAnimation(L"Right", Head, Vec2(64.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 1, 0.5f);
+	GetCAnimator()->CreateAnimation(L"Right", Head, Vec2(64.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 1, 0.5f);
 	GetCAnimator()->FindAnimation(L"Right")->Save(L"animation\\Right.anim");
-	GetCAnimator()->CreateAnimation(L"Up", Head, Vec2(128.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 1, 0.5f);
+	GetCAnimator()->CreateAnimation(L"Up", Head, Vec2(128.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 1, 0.5f);
 	GetCAnimator()->FindAnimation(L"Up")->Save(L"animation\\Up.anim");
-	GetCAnimator()->CreateAnimation(L"Left", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 1, 0.5f);
+	GetCAnimator()->CreateAnimation(L"Left", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 1, 0.5f);
 	GetCAnimator()->FindAnimation(L"Left")->Save(L"animation\\Left.anim");
+	//Attack
+	GetCAnimator()->CreateAnimation(L"DownAttack", Head, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->FindAnimation(L"DownAttack")->Save(L"animation\\DownAttack.anim");
+	GetCAnimator()->CreateAnimation(L"RightAttack", Head, Vec2(64.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->FindAnimation(L"RightAttack")->Save(L"animation\\RightAttack.anim");
+	GetCAnimator()->CreateAnimation(L"UpAttack", Head, Vec2(128.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->FindAnimation(L"UpAttack")->Save(L"animation\\UpAttack.anim");
+	GetCAnimator()->CreateAnimation(L"LeftAttack", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->FindAnimation(L"LeftAttack")->Save(L"animation\\LeftAttack.anim");
 	//MoveBody
-	Vec2 vBodyOffset = Vec2(0.f, 15.f);
+	Vec2 vBodyOffset = Vec2(0.f, 10.f);
 	m_SubAnimator->CreateAnimation(L"LeftMove", Body, Vec2(0.f, 64.f), Vec2(32.f, 32.f), vBodyOffset, 10, 0.1f);
 	m_SubAnimator->FindAnimation(L"LeftMove")->Save(L"animation\\LeftMove.anim");
 	m_SubAnimator->CreateAnimation(L"RightMove", Body, Vec2(0.f, 32.f), Vec2(32.f, 32.f), vBodyOffset, 10, 0.1f);
@@ -63,15 +79,6 @@ CPlayer::CPlayer()
 	m_SubAnimator->FindAnimation(L"UpMove")->Save(L"animation\\UpMove.anim");
 	m_SubAnimator->CreateAnimation(L"DownMove", Body, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vBodyOffset, 10, 0.1f);
 	m_SubAnimator->FindAnimation(L"DownMove")->Save(L"animation\\DownMove.anim");
-	//Attack
-	GetCAnimator()->CreateAnimation(L"DownAttack", Head, Vec2(0.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 2, m_fAttackSpeed * 0.3f);
-	GetCAnimator()->FindAnimation(L"DownAttack")->Save(L"animation\\DownAttack.anim");
-	GetCAnimator()->CreateAnimation(L"RightAttack", Head, Vec2(64.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 2, m_fAttackSpeed * 0.3f);
-	GetCAnimator()->FindAnimation(L"RightAttack")->Save(L"animation\\RightAttack.anim");
-	GetCAnimator()->CreateAnimation(L"UpAttack", Head, Vec2(128.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 2, m_fAttackSpeed * 0.3f);
-	GetCAnimator()->FindAnimation(L"UpAttack")->Save(L"animation\\UpAttack.anim");
-	GetCAnimator()->CreateAnimation(L"LeftAttack", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), Vec2(0.f, 0.f), 2, m_fAttackSpeed * 0.3f);
-	GetCAnimator()->FindAnimation(L"LeftAttack")->Save(L"animation\\LeftAttack.anim");
 	//Idle
 	m_SubAnimator->CreateAnimation(L"BodyIdle", Body, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vBodyOffset, 1, 0.1f);
 	m_SubAnimator->FindAnimation(L"BodyIdle")->Save(L"animation\\BodyIdle.anim");
@@ -80,7 +87,7 @@ CPlayer::CPlayer()
 
 
 	//Rigidbody
-	GetCRigidbody()->SetFriction(100.f);
+	GetCRigidbody()->SetFriction(400.f);
 	GetCRigidbody()->IsGround(true);
 	GetCRigidbody()->SetVelocityLimit(200.0f);
 
@@ -144,9 +151,14 @@ void CPlayer::render(HDC _dc)
 
 void CPlayer::BeginOverlap(CCollider* _Other)
 {
-
-	m_bisCollision = true;
-
+	if (_Other->GetOwner()->GetLayerType() == LAYER::BACKGROUND)
+	{
+		m_pMap = dynamic_cast<CMap*>(_Other->GetOwner());
+	}
+	if (_Other->GetOwner()->GetLayerType() == LAYER::MONSTER)
+	{
+		m_bisCollision = true;
+	}
 }
 
 void CPlayer::OnOverlap(CCollider* _Other)
@@ -180,6 +192,55 @@ void CPlayer::Move()
 		GetCRigidbody()->AddForce(Vec2(0.f, -(m_fSpeed + 200.f)));
 	if (IsPressed(KEY::DOWN))
 		GetCRigidbody()->AddForce(Vec2(0.f, m_fSpeed + 200.f));
+
+
+	//맵과 충돌
+	if (nullptr != m_pMap)
+	{
+
+		Vec2 MapPos = m_pMap->GetPos();
+		Vec2 MapScale = m_pMap->GetScale();
+		float MapWallPos = (float)m_pMap->GetWallScale();
+		//이걸 플레이어에다가 하면 좋치않았을까
+		//_Other->GetOwner();과 map 콜리전 간의 관계
+					//플레이어위치 - 플레이어 반사이즈 = 플레이어 상단 위치		-		맵중앙위치 -  맵 반사이즈 = 맵 상단위치  => 음수 = 범위를 벗어남 / 양수 =  범위 안에있음
+					// 
+		//좌단
+		float playerx = GetPos().x - (GetScale().x / 2);
+		float mapx = MapPos.x + MapWallPos;
+		float rendermapx = CCamera::GetInst()->GetRenderPos(MapPos).x;
+		if (playerx < mapx)
+		{
+			vPos = Vec2(mapx + (GetScale().x / 2), vPos.y);
+
+		}
+		//상단
+		float playery = GetPos().y - (GetScale().y / 2);
+		float mapy = MapPos.y + MapWallPos;
+		if (playery < mapy)
+		{
+			//m_pPlayer->GetCRigidbody()->SetVelocity(Vec2(m_pPlayer->GetCRigidbody()->GetVelocity().x, 0.f));
+			vPos = Vec2(vPos.x, mapy + (GetScale().y / 2));
+		}
+
+		//우단
+		playerx = GetPos().x + (GetScale().x / 2);
+		mapx = MapPos.x + MapScale.x - MapWallPos;
+		if (playerx > mapx)
+		{
+			vPos = Vec2(mapx - (GetScale().x / 2), vPos.y);
+		}
+		
+		//하단
+		playery = GetPos().y + (GetScale().y / 2);
+		mapy = MapPos.y + MapScale.y - MapWallPos;
+		if (playery > mapy)
+		{
+			vPos = Vec2(vPos.x, mapy - (GetScale().y / 2));
+		}
+
+	}
+
 	SetPos(vPos);
 }
 

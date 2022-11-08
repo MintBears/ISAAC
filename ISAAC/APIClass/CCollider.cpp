@@ -53,7 +53,6 @@ void CCollider::render(HDC _dc)
 	//기존 펜과 브러시를 새로 가져온 것들로 봐꾼다.
 	HPEN hOriginPen = (HPEN)SelectObject(_dc, hPen);
     HBRUSH hOriginBrush = (HBRUSH)SelectObject(_dc, (HBRUSH)GetStockObject(NULL_BRUSH));
-
 	Vec2 Pos = CCamera::GetInst()->GetRenderPos(m_FinalPos);
 
 	Rectangle(_dc, (int)(Pos.x - m_Scale.x / 2.f)

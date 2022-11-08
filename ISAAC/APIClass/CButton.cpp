@@ -41,7 +41,7 @@ void CButton::render(HDC _dc)
 	}
 
 	Vec2 vPos = GetFinalPos();
-	BitBlt(_dc, vPos.x, vPos.y, pTargetTex->Widht(), pTargetTex->Height(), pTargetTex->GetDC(), 0, 0, SRCCOPY);
+	BitBlt(_dc, (int)vPos.x, (int)vPos.y, pTargetTex->Widht(), pTargetTex->Height(), pTargetTex->GetDC(), 0, 0, SRCCOPY);
 
 
 

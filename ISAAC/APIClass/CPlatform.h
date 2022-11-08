@@ -1,13 +1,21 @@
 #pragma once
 #include "CObj.h"
+class CPlayer;
+
 class CPlatform :
     public CObj
 {
+
+private:
+    CPlayer* m_pPlayer;
 public:
-    CPlatform();
+    CPlatform(Vec2 _vPos, Vec2 _vScale);
     ~CPlatform();
 
 public:
+    virtual void tick() override;
+    virtual void final_tick() override;
+    virtual void render(HDC _dc) override;
 
     CLONE(CPlatform)
 
