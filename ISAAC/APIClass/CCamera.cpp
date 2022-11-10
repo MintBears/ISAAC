@@ -9,8 +9,7 @@
 
 #include "CLevelMgr.h"
 #include "CLevel.h"
-#include "CStartLevel.h"
-#include "CPlayer.h"
+#include "CMap.h"
 
 #include "CTexture.h"
 
@@ -47,15 +46,35 @@ void CCamera::tick()
 	if (IsPressed(KEY::D))
 		m_Look.x += 200.f * DT;
 	*/
+	//보정값
+	Vec2 CameraCorrection = Vec2(0.f, -50.f);
+	//카메라 초기위치
+	//Vec2 PlayerPos = ((CStartLevel*)CLevelMgr::GetInst()->GetCurLevel())->GetPlayer()->GetPos();
+	m_Look += CameraCorrection;
 
-	//이걸 구지 여기다가 해야되나 의문
-	/*
-	Vec2 PlayerPos = ((CStartLevel*)CLevelMgr::GetInst()->GetCurLevel())->GetPlayer()->GetPos();
-	m_Look = PlayerPos;
-	*/
 	Vec2 Resolution = CEngine::GetInst()->GetResolution();
 	Resolution /= 2.0f;
-	m_Diff = m_Look + m_vOffset - Resolution;
+
+	//방위치 움직이는거 잠시 폐기
+	//m_vPos;
+	//m_vScale;
+	//m_vCamRoomLT;
+	//m_vCamRoomRB;
+	//
+	////방거리 < 카메라거리
+	////(캐릭터 위치 - 맵방향 좌표) > 카메라 절반 크기
+	//Vec2 CameraPos = GetRenderPos(m_vPos);
+	//float RoomdistanceL = GetRenderPos(m_vPos).x - m_vCamRoomLT.x;
+	//float CameradistanceL = m_vScale.x / 2;
+	//
+	////최종카메라위치
+	//m_Diff = m_Look + m_vOffset - Resolution;
+
+
+
+
+
+
 
 	//카메라 렌더링 효과
 	CameraEffect();

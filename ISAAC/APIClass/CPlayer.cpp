@@ -201,10 +201,7 @@ void CPlayer::Move()
 		Vec2 MapPos = m_pMap->GetPos();
 		Vec2 MapScale = m_pMap->GetScale();
 		float MapWallPos = (float)m_pMap->GetWallScale();
-		//이걸 플레이어에다가 하면 좋치않았을까
-		//_Other->GetOwner();과 map 콜리전 간의 관계
-					//플레이어위치 - 플레이어 반사이즈 = 플레이어 상단 위치		-		맵중앙위치 -  맵 반사이즈 = 맵 상단위치  => 음수 = 범위를 벗어남 / 양수 =  범위 안에있음
-					// 
+		//플레이어위치 - 플레이어 반사이즈 = 플레이어 상단 위치		-		맵중앙위치 -  맵 반사이즈 = 맵 상단위치  => 음수 = 범위를 벗어남 / 양수 =  범위 안에있음
 		//좌단
 		float playerx = GetPos().x - (GetScale().x / 2);
 		float mapx = MapPos.x + MapWallPos;

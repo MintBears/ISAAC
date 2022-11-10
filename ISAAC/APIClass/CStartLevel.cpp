@@ -7,10 +7,13 @@
 #include "CResMgr.h"
 #include "CKeyMgr.h"
 
+#include "CRigidbody.h"
+
 #include "CCamera.h"
 #include "CObj.h"
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CMap.h"
 #include "CForce.h"
 #include "CPlatform.h"
 #include "CCameraObj.h"
@@ -20,6 +23,7 @@
 CStartLevel::CStartLevel()
 	: m_Player(nullptr)
 	, m_pCameraRoom(nullptr)
+	, m_pMap(nullptr)
 {
 }
 
@@ -31,13 +35,13 @@ CStartLevel::~CStartLevel()
 void CStartLevel::tick()
 {
 	//카메라 세팅
-	CCamera::GetInst()->SetLook(m_Player->GetPos());
-
-	//m_pCameraRoom->SetPos(m_Player->GetPos());
-
-	//Vec2 vResolution = CEngine::GetInst()->GetResolution();
-	//CCamera::GetInst()->SetLook(vResolution / 2.f);
+	//Vec2 CameraCorrection = Vec2(0.f, -50.f);
+	//잠시 폐기
+	//CCamera::GetInst()->SetLook(m_Player->GetPos());
+	//CCamera::GetInst()->SetPos(m_pMap->GetOffset());
+	//CCamera::GetInst()->SetCamRoomPos(m_pMap->GetPos(), m_pMap->GetPos() + m_pMap->GetScale());
 	CLevel::tick();
+
 
 	if (IsTap(KEY::ENTER))
 	{

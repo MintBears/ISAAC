@@ -3,6 +3,7 @@
 class CPlayer;
 class CPanelUI;
 class CCameraObj;
+class CMap;
 
 class CStartLevel :
     public CLevel
@@ -12,11 +13,13 @@ public:
     ~CStartLevel();
 
 private:
-    CPlayer* m_Player;
-    CCameraObj* m_pCameraRoom;
+    CPlayer*        m_Player;
+    CCameraObj*     m_pCameraRoom;
+    CMap*           m_pMap;
 
 public: 
     CPlayer* GetPlayer() { return m_Player; }
+    CMap* GetMap() { return m_pMap; }
 
 public:
     virtual void init() override;

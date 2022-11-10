@@ -10,7 +10,8 @@ public:
 
 private:
 
-    Vec2            m_vVelocity;        //속도
+    Vec2            m_vAccel;           //틱당 속도
+    Vec2            m_vVelocity;        //누적된속도
     Vec2            m_vForce;           //힘
     float           m_fMass;            //질량
 
@@ -27,6 +28,8 @@ public:
     void AddForce(Vec2 _vForce) { m_vForce += _vForce; }
     void SetVelocityLimit(float _fLimit) { m_fVelocityLimit = _fLimit; }
 
+    void SetAccel(Vec2 _vAccel) { m_vAccel = _vAccel; }
+    Vec2 GetAccel() { return m_vAccel; }
 
     void SetVelocity(Vec2 _vVelocity) { m_vVelocity = _vVelocity; }
     Vec2 GetVelocity() { return m_vVelocity; }

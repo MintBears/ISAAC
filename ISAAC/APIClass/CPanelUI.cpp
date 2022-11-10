@@ -36,7 +36,7 @@ void CPanelUI::render(HDC _dc)
 
 	Vec2 vPos = GetPos();
 
-	TransparentBlt(_dc, vPos.x, vPos.y
+	TransparentBlt(_dc, (float)vPos.x, (float)vPos.y
 		, GetIdleTex()->Widht()
 		, GetIdleTex()->Height()
 		, GetIdleTex()->GetDC()

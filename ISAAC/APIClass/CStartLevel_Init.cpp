@@ -34,17 +34,15 @@ void CStartLevel::init()
 	AddObject(pPanelUI, pPanelUI->GetLayerType());
 
 	//map 배치
-	CMap* pMap = new CMap(Vec2(0.f, (FLOAT)(pPanelUI->GetIdleTex()->Height())), Vec2(pMapTex->Widht(), pMapTex->Height()));
-	pMap->SetLayerType(LAYER::BACKGROUND);
-	AddObject(pMap, pMap->GetLayerType());
+	m_pMap = new CMap(Vec2(0.f, (FLOAT)(pPanelUI->GetIdleTex()->Height())), Vec2(pMapTex->Widht(), pMapTex->Height()));
+	m_pMap->SetLayerType(LAYER::BACKGROUND);
+	AddObject(m_pMap, m_pMap->GetLayerType());
 
 	//캐릭터 로드
-	m_Player = new CPlayer(Vec2((FLOAT)(CEngine::GetInst()->GetResolution().x / 2), (FLOAT)(CEngine::GetInst()->GetResolution().y / 2)), Vec2(30.f, 33.f));
+	m_Player = new CPlayer(m_pMap->GetOffset(), Vec2(30.f, 33.f));
 	m_Player->SetLayerType(LAYER::PLAYER);
 	AddObject(m_Player, m_Player->GetLayerType());
 
-	//카메라 초기세팅
-	CCamera::GetInst()->SetLook(m_Player->GetPos());
 
 	//몬스터 로드
 	//CMonster* Monster = new CMonster;
@@ -52,10 +50,17 @@ void CStartLevel::init()
 	//Monster->SetScale(Vec2(100.f, 100.f));
 	//Monster->SetLayerType(LAYER::MONSTER);
 	//AddObject(Monster, Monster->GetLayerType());
+	//카메라 세팅
+	Vec2 CameraCorrection = Vec2(0.f, -50.f);
+	CCamera::GetInst()->SetLook(m_Player->GetPos() + CameraCorrection);
+	CCamera::GetInst()->SetPos(m_pMap->GetOffset());
+	CCamera::GetInst()->SetScale(m_pMap->GetScale());
+	CCamera::GetInst()->SetCamRoomPos(m_pMap->GetPos(), m_pMap->GetPos() + m_pMap->GetScale());
 
-	m_pCameraRoom = new CCameraObj(pMap->GetOffset(), pMap->GetScale());
-	m_pCameraRoom->SetLayerType(LAYER::CAMERA);
-	AddObject(m_pCameraRoom, m_pCameraRoom->GetLayerType());
+	//카메라 범위 세팅
+	//m_pCameraRoom = new CCameraObj(m_pMap->GetOffset(), m_pMap->GetScale());
+	//m_pCameraRoom->SetLayerType(LAYER::CAMERA);
+	//AddObject(m_pCameraRoom, m_pCameraRoom->GetLayerType());
 
 
 

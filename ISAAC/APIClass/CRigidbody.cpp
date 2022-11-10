@@ -16,6 +16,7 @@ CRigidbody::CRigidbody(CObj* _pOwner)
 
 CRigidbody::CRigidbody(const CRigidbody& _other)
 	: CComponent(_other)
+	, m_vAccel(_other.m_vAccel)
 	, m_vVelocity(_other.m_vVelocity)
 	, m_vForce(_other.m_vForce)
 	, m_fMass(_other.m_fMass)
@@ -42,11 +43,11 @@ void CRigidbody::final_tick()
 
 	// f = m * a (가속도 구하기)
 	//여기 들어오는 힘이 최종 힘이다.
-	Vec2 vAccel = m_vForce / m_fMass;
+	m_vAccel = m_vForce / m_fMass;
 
 	//v = f * t (속도 구하기)
 	//누적된 속도를 구한다.
-	m_vVelocity += vAccel * DT;
+	m_vVelocity += m_vAccel * DT;
 
 	
 

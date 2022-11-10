@@ -13,8 +13,15 @@ class CCamera
 	SINGLE(CCamera);
 
 private:
-	Vec2			m_Look;
-	Vec2			m_Diff;
+
+	Vec2			m_vPos;
+	Vec2			m_vScale;
+
+	Vec2			m_vCamRoomLT;	//LeftTop
+	Vec2			m_vCamRoomRB;	//RightBottom
+
+	Vec2			m_Look;			//Å¸°Ù
+	Vec2			m_Diff;			//
 
 	CTexture*		m_pBlindTex;
 
@@ -32,6 +39,19 @@ private:
 
 
 public:
+
+	void SetPos(Vec2 _v) { m_vPos = _v; }
+	Vec2 GetPos() { return m_vPos; }
+
+	void SetScale(Vec2 _v) { m_vScale = _v; }
+	Vec2 GetScale() { return m_vPos; }
+
+	void SetCamRoomPos(Vec2 _vLeftTop, Vec2 _vRightBottom) 
+	{
+		m_vCamRoomLT = _vLeftTop;
+		m_vCamRoomRB = _vRightBottom;
+	}
+
 
 	void SetLook(Vec2 _Look) { m_Look = _Look; }
 	Vec2 GetLoot() { return m_Look; }
