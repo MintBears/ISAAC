@@ -47,8 +47,8 @@ CPlayer::CPlayer(Vec2 _vPos, Vec2 _vScale)
 	GetCollider()->SetScale(GetScale());
 
 	//Animator
-	CTexture* Head = CResMgr::GetInst()->LoadTexture(L"Head", L"texture\\Head.bmp");
-	CTexture* Body = CResMgr::GetInst()->LoadTexture(L"Body", L"texture\\Body.bmp");
+	CTexture* Head = CResMgr::GetInst()->LoadTexture(L"Head", L"texture\\Player\\Head.bmp");
+	CTexture* Body = CResMgr::GetInst()->LoadTexture(L"Body", L"texture\\Player\\Body.bmp");
 
 	//MoveLook
 	Vec2 vHeadOffset = Vec2(0.f, -5.f);
@@ -281,9 +281,7 @@ void CPlayer::Attack()
 		if (m_CurAttackTime == 0.f)
 		{
 			//CLevel* CurLevel = CLevelMgr::GetInst()->GetCurLevel();
-			CMissile* Missile = new CMissile;
-			//Missile->SetPos(GetPos());
-			Missile->SetScale(Vec2(20.F, 20.f));
+			CMissile* Missile = new CMissile(GetPos(), Vec2(20.F, 20.f));
 			Missile->SetSpeed(400.f * m_fAttackSpeed);
 			Missile->SetLayerType(LAYER::PLAYER_PROJECTILE);
 			switch (CKeyMgr::GetInst()->GetKey())

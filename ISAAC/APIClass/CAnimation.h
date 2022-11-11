@@ -12,12 +12,13 @@ public:
     ~CAnimation();
 
 private:
-    CAnimator*          m_pAnimator;
-    vector<tAnimFrm>    m_vecFrm;
-    CTexture*           m_pAtlas;
-    int                 m_iCurFrm;
-    float               m_fAccTime;
-    bool                m_bFinish;
+    CAnimator*          m_pAnimator;        
+    vector<tAnimFrm>    m_vecFrm;           //애니메이션 정보모음
+    CTexture*           m_pAtlas;           //합본 이미지
+    int                 m_iCurFrm;          //현제 프레임
+    float               m_fAccTime;         //재생 흐른시간
+    bool                m_bFinish;          //끝인가
+    bool                m_bIsPlay;          //재생여부
 public:
 
     bool IsFinish() { return m_bFinish; }
@@ -27,6 +28,9 @@ public:
         m_fAccTime = 0.f;
         m_bFinish = false;
     }
+
+    void SetPlay() { m_bIsPlay = false; }
+    void SetStop() { m_bIsPlay = true; }
 
 private:
     void init(const wstring& _strName, CTexture* _pAtlas, Vec2 _vLeftTop, Vec2 _vSize, Vec2 _vOffset, int _iMaxFrmCount, float _fDuration);

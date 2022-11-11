@@ -114,6 +114,34 @@ void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 
 	m_pCurAnim = pAnim;
 	m_pCurAnim->Reset();
+	m_pCurAnim->SetPlay();
 	m_bRepeat = _bRepeat;
+}
+
+void CAnimator::Stop(const wstring& _strName)
+{
+	CAnimation* pAnim = FindAnimation(_strName);
+	if (nullptr == pAnim)
+	{
+		MessageBox(nullptr, L"해당 Animation 없음", L"Animation 재생 오류", MB_OK);
+		return;
+	}
+
+	m_pCurAnim = pAnim;
+	m_pCurAnim->SetStop();
+}
+
+void CAnimator::End(const wstring& _strName)
+{
+	CAnimation* pAnim = FindAnimation(_strName);
+	if (nullptr == pAnim)
+	{
+		MessageBox(nullptr, L"해당 Animation 없음", L"Animation 재생 오류", MB_OK);
+		return;
+	}
+
+	m_pCurAnim = pAnim;
+	m_pCurAnim->IsFinish();
+
 }
 

@@ -17,6 +17,7 @@ CAnimation::CAnimation(CAnimator* _pAnimator)
 	, m_iCurFrm(0)
 	, m_fAccTime(0.f)
 	, m_bFinish(false)
+	, m_bIsPlay(true)
 {
 }
 
@@ -43,7 +44,7 @@ void CAnimation::init(const wstring& _strName, CTexture* _pAtlas, Vec2 _vLeftTop
 void CAnimation::tick()
 {
 
-	if (m_bFinish)
+	if (m_bFinish || m_bIsPlay)
 	{
 		return;
 	}
