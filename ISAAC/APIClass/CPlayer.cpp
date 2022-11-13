@@ -61,13 +61,13 @@ CPlayer::CPlayer(Vec2 _vPos, Vec2 _vScale)
 	GetCAnimator()->CreateAnimation(L"Left", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 1, 0.5f);
 	GetCAnimator()->FindAnimation(L"Left")->Save(L"animation\\Left.anim");
 	//Attack
-	GetCAnimator()->CreateAnimation(L"DownAttack", Head, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->CreateAnimation(L"DownAttack", Head, Vec2(0.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.5f);
 	GetCAnimator()->FindAnimation(L"DownAttack")->Save(L"animation\\DownAttack.anim");
-	GetCAnimator()->CreateAnimation(L"RightAttack", Head, Vec2(64.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->CreateAnimation(L"RightAttack", Head, Vec2(64.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.5f);
 	GetCAnimator()->FindAnimation(L"RightAttack")->Save(L"animation\\RightAttack.anim");
-	GetCAnimator()->CreateAnimation(L"UpAttack", Head, Vec2(128.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->CreateAnimation(L"UpAttack", Head, Vec2(128.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.5f);
 	GetCAnimator()->FindAnimation(L"UpAttack")->Save(L"animation\\UpAttack.anim");
-	GetCAnimator()->CreateAnimation(L"LeftAttack", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.3f);
+	GetCAnimator()->CreateAnimation(L"LeftAttack", Head, Vec2(192.f, 0.f), Vec2(32.f, 32.f), vHeadOffset, 2, m_fAttackSpeed * 0.5f);
 	GetCAnimator()->FindAnimation(L"LeftAttack")->Save(L"animation\\LeftAttack.anim");
 	//MoveBody
 	Vec2 vBodyOffset = Vec2(0.f, 10.f);
@@ -170,6 +170,10 @@ void CPlayer::OnOverlap(CCollider* _Other)
 			//충돌처리
 			m_iHp--;
 		}
+	}
+	else
+	{
+		m_bisCollision = false;
 	}
 }
 
@@ -281,7 +285,7 @@ void CPlayer::Attack()
 		if (m_CurAttackTime == 0.f)
 		{
 			//CLevel* CurLevel = CLevelMgr::GetInst()->GetCurLevel();
-			CMissile* Missile = new CMissile(GetPos(), Vec2(20.F, 20.f));
+			CMissile* Missile = new CMissile(GetPos(), Vec2(20.f, 20.f));
 			Missile->SetSpeed(400.f * m_fAttackSpeed);
 			Missile->SetLayerType(LAYER::PLAYER_PROJECTILE);
 			switch (CKeyMgr::GetInst()->GetKey())

@@ -140,6 +140,9 @@
     <Filter Include="Game\04.Object\CameraObj">
       <UniqueIdentifier>{4fa8c8f6-215f-4193-a661-89057a114acc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04.Object\Door">
+      <UniqueIdentifier>{2ab5d859-29b1-4d96-b6b7-7c01faa424b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -282,6 +285,9 @@
     </ClInclude>
     <ClInclude Include="CCameraObj.h">
       <Filter>Game\04.Object\CameraObj</Filter>
+    </ClInclude>
+    <ClInclude Include="CDoor.h">
+      <Filter>Game\04.Object\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +433,9 @@
     </ClCompile>
     <ClCompile Include="CCameraObj.cpp">
       <Filter>Game\04.Object\CameraObj</Filter>
+    </ClCompile>
+    <ClCompile Include="CDoor.cpp">
+      <Filter>Game\04.Object\Door</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

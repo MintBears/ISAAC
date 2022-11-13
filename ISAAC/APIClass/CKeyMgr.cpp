@@ -39,6 +39,11 @@ int g_arrVK[(UINT)KEY::END]
 	'7',
 	'8',
 	'9',
+
+	'I',
+	'J',
+	'K',
+	'L',
 };
 
 CKeyMgr::CKeyMgr()

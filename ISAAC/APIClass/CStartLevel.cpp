@@ -43,6 +43,8 @@ void CStartLevel::tick()
 	CLevel::tick();
 
 
+
+
 	if (IsTap(KEY::ENTER))
 	{
 		//CCamera::GetInst()->FadeOut(1.0f);

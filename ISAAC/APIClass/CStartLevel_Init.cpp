@@ -26,17 +26,19 @@ void CStartLevel::init()
 
 	// UI 배치
 	// Button 이 사용할 텍스쳐
-	CPanelUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetPos(Vec2(0.f, 0.f));
-	pPanelUI->SetIdleTex(pPanelTex);
-	pPanelUI->SetIsMove(false);
-	pPanelUI->SetLayerType(LAYER::UI);
-	AddObject(pPanelUI, pPanelUI->GetLayerType());
+	//CPanelUI* pPanelUI = new CPanelUI;
+	//pPanelUI->SetPos(Vec2(0.f, 0.f));
+	//pPanelUI->SetIdleTex(pPanelTex);
+	//pPanelUI->SetIsMove(false);
+	//pPanelUI->SetLayerType(LAYER::UI);
+	//AddObject(pPanelUI, pPanelUI->GetLayerType());
 
 	//map 배치
-	m_pMap = new CMap(Vec2(0.f, (FLOAT)(pPanelUI->GetIdleTex()->Height())), Vec2(pMapTex->Widht(), pMapTex->Height()));
+	m_pMap = new CMap(Vec2(0.f, 0.f), Vec2(pMapTex->Widht(), pMapTex->Height()));
 	m_pMap->SetLayerType(LAYER::BACKGROUND);
 	AddObject(m_pMap, m_pMap->GetLayerType());
+
+
 
 	//캐릭터 로드
 	m_Player = new CPlayer(m_pMap->GetOffset(), Vec2(30.f, 33.f));
@@ -45,14 +47,11 @@ void CStartLevel::init()
 
 
 	//몬스터 로드
-	//CMonster* Monster = new CMonster;
-	//Monster->SetPos(Vec2(50.f, 50.f));
-	//Monster->SetScale(Vec2(100.f, 100.f));
-	//Monster->SetLayerType(LAYER::MONSTER);
-	//AddObject(Monster, Monster->GetLayerType());
+	CMonster* Monster = new CMonster(Vec2(50.f, 50.f), Vec2(20.f, 20.f));
+	Monster->SetLayerType(LAYER::MONSTER);
+	AddObject(Monster, Monster->GetLayerType());
 	//카메라 세팅
-	Vec2 CameraCorrection = Vec2(0.f, -50.f);
-	CCamera::GetInst()->SetLook(m_Player->GetPos() + CameraCorrection);
+	CCamera::GetInst()->SetLook(m_Player->GetPos());
 	CCamera::GetInst()->SetPos(m_pMap->GetOffset());
 	CCamera::GetInst()->SetScale(m_pMap->GetScale());
 	CCamera::GetInst()->SetCamRoomPos(m_pMap->GetPos(), m_pMap->GetPos() + m_pMap->GetScale());
@@ -61,6 +60,11 @@ void CStartLevel::init()
 	//m_pCameraRoom = new CCameraObj(m_pMap->GetOffset(), m_pMap->GetScale());
 	//m_pCameraRoom->SetLayerType(LAYER::CAMERA);
 	//AddObject(m_pCameraRoom, m_pCameraRoom->GetLayerType());
+
+	//map 추가배치
+	m_pMap = new CMap(Vec2(0.f - pMapTex->Widht(), 0.f), Vec2(pMapTex->Widht(), pMapTex->Height()));
+	m_pMap->SetLayerType(LAYER::BACKGROUND);
+	AddObject(m_pMap, m_pMap->GetLayerType());
 
 
 

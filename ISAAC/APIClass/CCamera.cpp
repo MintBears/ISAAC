@@ -36,21 +36,21 @@ CCamera::~CCamera()
 
 void CCamera::tick()
 {
-	/*
-	if (IsPressed(KEY::W))
+	
+	if (IsPressed(KEY::I))
 		m_Look.y -= 200.f * DT;
-	if (IsPressed(KEY::S))
+	if (IsPressed(KEY::K))
 		m_Look.y += 200.f * DT;
-	if (IsPressed(KEY::A))
+	if (IsPressed(KEY::J))
 		m_Look.x -= 200.f * DT;
-	if (IsPressed(KEY::D))
+	if (IsPressed(KEY::L))
 		m_Look.x += 200.f * DT;
-	*/
+	
 	//보정값
-	Vec2 CameraCorrection = Vec2(0.f, -50.f);
+
 	//카메라 초기위치
 	//Vec2 PlayerPos = ((CStartLevel*)CLevelMgr::GetInst()->GetCurLevel())->GetPlayer()->GetPos();
-	m_Look += CameraCorrection;
+	//m_Look += CameraCorrection + PlayerPos;
 
 	Vec2 Resolution = CEngine::GetInst()->GetResolution();
 	Resolution /= 2.0f;
@@ -68,9 +68,11 @@ void CCamera::tick()
 	//float CameradistanceL = m_vScale.x / 2;
 	//
 	////최종카메라위치
-	//m_Diff = m_Look + m_vOffset - Resolution;
+	m_Diff = m_Look + m_vOffset - Resolution;
 
 
+
+	//m_Diff = Vec2(0.f,0.f);
 
 
 

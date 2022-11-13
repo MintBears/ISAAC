@@ -32,7 +32,7 @@ public:
     CAnimation* LoadAnimation(const wstring& _strRelativePath);
     void Play(const wstring& _strName, bool _bRepeat);
     void Stop(const wstring& _strName);
-    void End(const wstring& _strName);
+    bool End(const wstring& _strName);
     void SetRepeat(bool _bRepeat) { m_bRepeat = _bRepeat; }
 
 };

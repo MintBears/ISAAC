@@ -7,7 +7,7 @@ class CMonster :
     public CObj
 {
 public:
-    CMonster();
+    CMonster(Vec2 _vPos, Vec2 _vScale);
     virtual ~CMonster();
 
 private:

@@ -17,7 +17,7 @@
 
 CMap::CMap(Vec2 _vPos, Vec2 _vScale)
 	: m_pTex(nullptr)
-	, m_fWallScale(90)	
+	, m_fWallScale(50)	
 {
 	SetPos(_vPos);
 	SetScale(_vScale);
@@ -29,6 +29,8 @@ CMap::CMap(Vec2 _vPos, Vec2 _vScale)
 	GetCollider()->SetOffsetPos(Vec2(GetScale().x / 2, GetScale().y / 2));
 	GetCollider()->SetScale(Vec2(GetScale().x - (m_fWallScale * 2), GetScale().y - (m_fWallScale * 2)));
 
+
+
 	m_vOffset = GetPos() + Vec2(GetScale().x / 2, GetScale().y / 2);
 }
 
@@ -39,7 +41,8 @@ CMap::~CMap()
 
 void CMap::tick()
 {
-
+	Vec2 a = GetPos();
+	CObj::tick();
 }
 
 void CMap::final_tick()

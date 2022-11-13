@@ -131,17 +131,16 @@ void CAnimator::Stop(const wstring& _strName)
 	m_pCurAnim->SetStop();
 }
 
-void CAnimator::End(const wstring& _strName)
+bool CAnimator::End(const wstring& _strName)
 {
 	CAnimation* pAnim = FindAnimation(_strName);
 	if (nullptr == pAnim)
 	{
-		MessageBox(nullptr, L"해당 Animation 없음", L"Animation 재생 오류", MB_OK);
-		return;
+		return MessageBox(nullptr, L"해당 Animation 없음", L"Animation 재생 오류", MB_OK);
 	}
 
 	m_pCurAnim = pAnim;
-	m_pCurAnim->IsFinish();
+	return m_pCurAnim->IsFinish();
 
 }
 

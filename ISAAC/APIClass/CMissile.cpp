@@ -12,7 +12,7 @@
 CMissile::CMissile(Vec2 _vPos, Vec2 _vScale)
 	: m_fSpeed(400.f)
 	, m_fDegree(80.f)
-	, m_fLifeTime(1.0f)
+	, m_fLifeTime(0.5f)
 	, a(true)
 
 {
@@ -41,19 +41,27 @@ void CMissile::tick()
 	//vPos.y -= m_fSpeed * DT;
 	float fRadian = (m_fDegree * PI) / 180.f;
 
-	vPos.x += m_fSpeed * cosf(fRadian) * DT;
-	vPos.y -= m_fSpeed * sinf(fRadian) * DT;
-	SetPos(vPos);
-
 	m_fLifeTime -= DT;
-
-	if (m_fLifeTime < 0.f && a == true)
+	if (m_fLifeTime < 0.f)
 	{
-		GetCAnimator()->Play(L"Missile", false);
+		if (a == true)
+		{
+			GetCAnimator()->Play(L"Missile", false);
+		}
 		a = false;
 	}
-
+	else
+	{
+		vPos.x += m_fSpeed * cosf(fRadian) * DT;
+		vPos.y -= m_fSpeed * sinf(fRadian) * DT;
+	}
+	SetPos(vPos);
 	CObj::tick();
+
+	if (GetCAnimator()->End(L"Missile"))
+	{
+		SetDead();
+	}
 }
 
 void CMissile::render(HDC _dc)
